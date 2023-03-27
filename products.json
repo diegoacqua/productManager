@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "title": "Remera",
+    "description": "Remera negra",
+    "price": 1300,
+    "thumbnail": "no hay imagen",
+    "stock": 50,
+    "code": "abc1"
+  },
+  {
+    "id": 2,
+    "title": "Camisa",
+    "description": "Camisa blanca",
+    "price": 1500,
+    "thumbnail": "no hay imagen",
+    "stock": 25,
+    "code": "abc2"
+  },
+  {
+    "id": 3,
+    "title": "Jean",
+    "description": "Jean azul",
+    "price": 1500,
+    "thumbnail": "no hay imagen",
+    "stock": 30,
+    "code": "abc3"
+  },
+  {
+    "id": 4,
+    "title": "Pulover",
+    "description": "Pulover rojo",
+    "price": 2600,
+    "thumbnail": "no hay imagen",
+    "stock": 15,
+    "code": "abc4"
+  },
+  {
+    "id": 5,
+    "title": "Zapatillas",
+    "description": "Zapatillas deportivas",
+    "price": 4000,
+    "thumbnail": "no hay imagen",
+    "stock": 40,
+    "code": "abc5"
+  },
+  {
+    "id": 6,
+    "title": "Medias",
+    "description": "Medias largas",
+    "price": 4000,
+    "thumbnail": "no hay imagen",
+    "stock": 50,
+    "code": "abc6"
+  },
+  {
+    "id": 7,
+    "title": "Anteojos de sol",
+    "description": "Anteojos de sol Rayban",
+    "price": 8000,
+    "thumbnail": "no hay imagen",
+    "stock": 20,
+    "code": "abc7"
+  },
+  {
+    "id": 8,
+    "title": "Soquetes",
+    "description": "Soquetes negros",
+    "price": 3600,
+    "thumbnail": "no hay imagen",
+    "stock": 60,
+    "code": "abc8"
+  },
+  {
+    "id": 9,
+    "title": "Arito de oro",
+    "description": "Arito de oro",
+    "price": 9000,
+    "thumbnail": "no hay imagen",
+    "stock": 14,
+    "code": "abc9"
+  },
+  {
+    "id": 10,
+    "title": "Reloj",
+    "description": "Reloj azul",
+    "price": 6000,
+    "thumbnail": "no hay imagen",
+    "stock": 10,
+    "code": "abc10"
+  }
+]

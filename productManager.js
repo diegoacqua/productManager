@@ -30,7 +30,7 @@ export class ProductManager {
       );
 
       if (noValido) {
-        return console.log(
+        throw new Error(
           "El Id o el codigo del producto ya existe, no se puede crear el objeto"
         );
       }

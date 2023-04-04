@@ -102,5 +102,3 @@ export class ProductManager {
     }
   }
 }
-
-const manager = new ProductManager();

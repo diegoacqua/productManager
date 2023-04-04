@@ -13,27 +13,31 @@ export class CartManager {
   async createCart(cart) {
     try {
       const cartFile = await fs.readFile(this.path, "utf-8");
-      let newCart = JSON.parse(cartFile);
-      let products = [];
+      if (cartFile) {
+        let newCart = JSON.parse(cartFile);
+        let products = [];
 
-      const noValido = newCart.find((c) => c.id === cart.id);
+        const noValido = newCart.find((c) => c.id === cart.id);
 
-      if (noValido) {
-        throw new Error("El carrito ya existe");
+        if (noValido) {
+          throw new Error("El carrito ya existe");
+        }
+
+        if (newCart.length > 0) {
+          const lastCart = newCart[newCart.length - 1];
+          this.autoId = lastCart.id + 1;
+        }
+
+        newCart.push({
+          id: this.autoId++,
+          products,
+        });
+
+        await fs.writeFile(this.path, JSON.stringify(newCart, null, 2));
+        return "Carrito creado con exito";
+      } else {
+        await fs.writeFile(this.path, "[]");
       }
-
-      if (newCart.length > 0) {
-        const lastCart = newCart[newCart.length - 1];
-        this.autoId = lastCart.id + 1;
-      }
-
-      newCart.push({
-        id: this.autoId++,
-        products,
-      });
-
-      await fs.writeFile(this.path, JSON.stringify(newCart, null, 2));
-      return "Carrito creado con exito";
     } catch (e) {
       throw new Error(e);
     }
@@ -62,11 +66,11 @@ export class CartManager {
       if (searchCart) {
         const searchProduct = searchCart.products.find((p) => p.id === pId);
         if (searchProduct) {
-          console.log(searchProduct);
+          searchProduct.quantity += 1;
+          await fs.writeFile(this.path, JSON.stringify(carts, null, 2));
         } else {
           searchCart.products.push({ id: +pId, quantity: 1 });
-          console.log(searchCart);
-          console.log(searchCart.products);
+          await fs.writeFile(this.path, JSON.stringify(carts, null, 2));
         }
       } else {
         throw new Error("El carrito no existe");

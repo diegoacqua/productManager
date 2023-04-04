@@ -13,7 +13,7 @@ cartRouter.post("/", async (req, res) => {
 cartRouter.post("/:cid/products/:pid", async (req, res) => {
   let cartId = req.params.cid;
   let productId = req.params.pid;
-  res.status(200).json(await manager.addProduct(+cartId, productId));
+  res.status(200).json(await manager.addProduct(+cartId, +productId));
 });
 
 cartRouter.get("/:id", async (req, res) => {

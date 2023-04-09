@@ -73,11 +73,16 @@ export class ProductManager {
       let products = JSON.parse(productFile);
 
       const updateProduct = products.findIndex((product) => product.id === id);
+      const valido = products.find((p) => p.id === id);
+      if (valido) {
+        console.log(updateProduct);
+        products.splice(updateProduct, 1, { id, ...product });
 
-      products.splice(updateProduct, 1, { id, ...product });
-
-      await fs.writeFile(this.path, JSON.stringify(products, null, 2));
-      return "Producto actualizado con exito!";
+        await fs.writeFile(this.path, JSON.stringify(products, null, 2));
+        return "Producto actualizado con exito!";
+      } else {
+        throw new Error("Este producto no existe");
+      }
     } catch (e) {
       throw new Error(e);
     }

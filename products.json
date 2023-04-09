@@ -79,14 +79,5 @@
     "thumbnail": "no hay imagen",
     "stock": 14,
     "code": "abc9"
-  },
-  {
-    "id": 10,
-    "title": "Reloj",
-    "description": "Reloj azul",
-    "price": 6000,
-    "thumbnail": "no hay imagen",
-    "stock": 10,
-    "code": "abc10"
   }
 ]

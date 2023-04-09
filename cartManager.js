@@ -68,9 +68,11 @@ export class CartManager {
         if (searchProduct) {
           searchProduct.quantity += 1;
           await fs.writeFile(this.path, JSON.stringify(carts, null, 2));
+          return "Se agrego otro producto al carrito";
         } else {
           searchCart.products.push({ id: +pId, quantity: 1 });
           await fs.writeFile(this.path, JSON.stringify(carts, null, 2));
+          return "El producto fue agregado con exito!";
         }
       } else {
         throw new Error("El carrito no existe");

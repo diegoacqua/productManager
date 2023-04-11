@@ -9,8 +9,8 @@
     </div>
     {{/each}}
 </div>
-<script> 
+<script type="module"> 
      import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
      const socket = io();
-    socket.emit("message", "hola desde el client")
+    
 </script>

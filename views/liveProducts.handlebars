@@ -1,0 +1,16 @@
+<div>
+    {{#each productList}}
+    <div>
+        <p>{{this.title}}</p>
+        <p>{{this.description}}</p>
+        <p>{{this.price}}</p>
+        <p>{{this.stock}}</p>
+        <p>{{this.code}}</p>
+    </div>
+    {{/each}}
+</div>
+<script> 
+     import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
+     const socket = io();
+    socket.emit("message", "hola desde el client")
+</script>

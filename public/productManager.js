@@ -35,6 +35,24 @@ export class ProductManager {
         );
       }
 
+      //const campoVacio = Object.values(producto.trim()).length === 0;
+      const titleValido = producto.title.trim().length === 0;
+      const priceValido = producto.price === 0;
+      const descriptionValido = producto.description.trim().length === 0;
+      const stockValido = producto.stock === 0;
+      const codeValido = producto.code.trim().length === 0;
+      const thumbnailValido = producto.thumbnail.trim().length === 0;
+      if (
+        titleValido ||
+        priceValido ||
+        descriptionValido ||
+        stockValido ||
+        codeValido ||
+        thumbnailValido
+      ) {
+        throw new Error("Hay un campo vacio en el producto");
+      }
+
       if (newProduct.length > 0) {
         const lastProduct = newProduct[newProduct.length - 1];
         this.autoId = lastProduct.id + 1;

@@ -1,4 +1,20 @@
 <div>
+
+    <form id="myForm" action="">
+        <p>Agrega un producto</p>
+        <label for="title">Agregar el nombre del producto</label>
+        <input type="text" id="title" name="title"/>
+        <label for="description">Agregar la descripcion del producto</label>
+        <input type="text" id="description" name="description"/>
+        <label for="price">Agregar el precio del producto</label>
+        <input type="text" id="price" name="price"/>
+        <label for="stock">Agregar el stock del producto</label>
+        <input type="text" id="stock" name="stock"/>
+        <label for="code">Agregar el codigo del producto</label>
+        <input type="text" id="code" name="code"/>
+        <button type="submit">Enviar</button>
+
+    </form>
     {{#each productList}}
     <div>
         <p>{{this.title}}</p>
@@ -13,4 +29,31 @@
      import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
      const socket = io();
     
+    const products = document.getElementById("productList");
+    const formulario = document.getElementById("myForm");
+    formulario.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const titleInput = document.getElementById(document.getElementById("title").value);
+        const descriptionInput = document.getElementById(document.getElementById("description").value);
+        const priceInput = document.getElementById(document.getElementById("price").value);
+        const stockInput = document.getElementById(document.getElementById("stock").value);
+        const codeInput = document.getElementById(document.getElementById("code").value);
+
+        const product = {title: titleInput, 
+                    description: descriptionInput, 
+                    price: priceInput, 
+                    stock: stockInput, 
+                    code: codeInput};
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = `Producto: ${titleInput} \nPrecio: ${priceInput} \nDescription: ${descriptionInput} \nStock: ${stockInput} \nCodigo: ${codeInput}`
+    products.appendChild(paragraph);
+    socket.emit("cambios", product);
+    console.log("archivo enviado");
+    })
+
+    socket.on("cambios", (data) => {console.log("recibido", data)});
+    const paragraph = document.createElement("p");
+    paragraph.textContent = `Producto: ${titleInput} \nPrecio: ${priceInput} \nDescription: ${descriptionInput} \nStock: ${stockInput} \nCodigo: ${codeInput}`;
+    products.appendChild(paragraph);
 </script>

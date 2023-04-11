@@ -2,6 +2,7 @@ import express from "express";
 import { engine } from "express-handlebars";
 import { resolve } from "path";
 import { Server } from "socket.io";
+import { ProductManager } from "./public/productManager.js";
 import productRouter from "./routes/productRouter.js";
 import cartRouter from "./routes/cartRouter.js";
 import productListRouter from "./routes/productListRouter.js";
@@ -34,11 +35,23 @@ void (async () => {
 
     const socketServer = new Server(httpServer);
 
+    async function getData(data) {
+      await ProductManager.addProduct(data);
+    }
+
     socketServer.on("connection", (socket) => {
       console.log("Nuevo cliente conectado");
 
       socket.on("message", (data) => {
         console.log(data);
+      });
+
+      socket.on("cambios", (data) => {
+        console.log(data);
+
+        getData(data);
+
+        socket.broadcast.emit("cambios", data);
       });
     });
   } catch (e) {

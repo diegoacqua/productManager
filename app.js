@@ -29,7 +29,7 @@ void (async () => {
     app.use("/api/carts", cartRouter);
     app.use("/", productListRouter);
 
-    const httpServer = app.listen(8084, () => {
+    const httpServer = app.listen(8082, () => {
       console.log("Servidor Escuchando");
     });
 

@@ -15,6 +15,14 @@
         <button type="submit">Enviar</button>
 
     </form>
+
+    <form id="deleteForm" action="">
+        <p>Borrar un producto</p>
+        <label for="id">Pon el ID del producto a borrar</label>
+        <input type="text" id="id" name="id">
+        <button type="submit">Enviar</button>
+    </form>
+
     {{#each productList}}
     <div>
         <p>{{this.title}}</p>
@@ -48,12 +56,21 @@
     const paragraph = document.createElement("p");
     paragraph.textContent = `Producto: ${titleInput} \nPrecio: ${priceInput} \nDescription: ${descriptionInput} \nStock: ${stockInput} \nCodigo: ${codeInput}`
     products.appendChild(paragraph);
-    socket.emit("cambios", product);
+    socket.emit("agregar", product);
     console.log("archivo enviado");
     })
 
-    socket.on("cambios", (data) => {console.log("recibido", data)});
+    socket.on("agregar", (data) => {console.log("recibido", data)});
     const paragraph = document.createElement("p");
     paragraph.textContent = `Producto: ${titleInput} \nPrecio: ${priceInput} \nDescription: ${descriptionInput} \nStock: ${stockInput} \nCodigo: ${codeInput}`;
     products.appendChild(paragraph);
+
+    const formDelete = document.getElementById("deleteForm");
+    formDelete.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const idInput = document.getElementById(document.getElementById("id").value);
+        socket.emit("borrar", +idInput)
+        console.log("archivo enviado")
+    })
+    
 </script>

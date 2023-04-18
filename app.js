@@ -35,10 +35,6 @@ void (async () => {
 
     const socketServer = new Server(httpServer);
 
-    async function getData(data) {
-      await ProductManager.addProduct(data);
-    }
-
     socketServer.on("connection", (socket) => {
       console.log("Nuevo cliente conectado");
 
@@ -46,12 +42,14 @@ void (async () => {
         console.log(data);
       });
 
-      socket.on("cambios", (data) => {
-        console.log(data);
+      socket.on("agregar", async (data) => {
+        await ProductManager.addProduct(data);
+        socket.emit(await ProductManager.getProducts());
+      });
 
-        getData(data);
-
-        socket.broadcast.emit("cambios", data);
+      socket.on("borrar", async (data) => {
+        await ProductManager.deleteProduct(data);
+        socket.emit(await ProductManager.getProducts());
       });
     });
   } catch (e) {
